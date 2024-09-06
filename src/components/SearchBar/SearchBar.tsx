@@ -1,13 +1,17 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import css from "./SearchBar.module.css";
 
-const SearchBar = ({ onSearch }) => {
-  const [value, setValue] = useState("");
+interface SearchBarProps {
+  onSearch: (value: string) => void;
+}
 
-  const handleSubmit = (e) => {
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+  const [value, setValue] = useState<string>("");
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.target;
+    const form = e.currentTarget;
     const input = form.search.value;
     if (input.trim() === "") {
       toast("Enter text to search for images", {
@@ -22,11 +26,11 @@ const SearchBar = ({ onSearch }) => {
       return;
     }
     onSearch(value);
-    form.reset();
+    setValue("");
   };
 
-  const changeValue = (e) => {
-    setValue(e.target.value);
+  const changeValue = (e: FormEvent<HTMLInputElement>) => {
+    setValue(e.currentTarget.value);
   };
 
   return (

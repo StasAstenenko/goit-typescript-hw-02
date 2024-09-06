@@ -1,8 +1,19 @@
 import Modal from "react-modal";
+import { Article } from "../../Types/types";
 
 Modal.setAppElement("#root");
 
-function ImageModal({ image, closeModal, isOpen }) {
+interface ImageModalProp {
+  image: Pick<Article, "urls">;
+  closeModal: () => void;
+  isOpen: boolean;
+}
+
+const ImageModal: React.FC<ImageModalProp> = ({
+  image,
+  closeModal,
+  isOpen,
+}) => {
   if (!image || !image.urls) return null;
   return (
     <Modal
@@ -26,6 +37,6 @@ function ImageModal({ image, closeModal, isOpen }) {
       <img src={image.urls.regular} width="800" height="600" />
     </Modal>
   );
-}
+};
 
 export default ImageModal;

@@ -1,7 +1,13 @@
+import { Article } from "../../Types/types";
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
 
-const ImageGallery = ({ articles, openModal }) => {
+interface ImageGalleryProps {
+  articles: Article[];
+  openModal: (article: Article) => void;
+}
+
+const ImageGallery: React.FC<ImageGalleryProps> = ({ articles, openModal }) => {
   return (
     <ul className={css.modalGalleryList}>
       {articles.map(({ id, urls: { small, regular }, description }, index) => (
