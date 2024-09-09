@@ -11,9 +11,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const input = form.search.value;
-    if (input.trim() === "") {
+    if (value.trim() === "") {
       toast("Enter text to search for images", {
         icon: "❌",
         style: {
